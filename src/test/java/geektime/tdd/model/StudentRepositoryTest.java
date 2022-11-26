@@ -1,3 +1,7 @@
+package geektime.tdd.model;
+
+import geektime.tdd.model.Student;
+import geektime.tdd.model.StudentRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;

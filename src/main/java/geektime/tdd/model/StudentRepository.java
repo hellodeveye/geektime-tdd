@@ -1,3 +1,4 @@
+package geektime.tdd.model;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -31,5 +32,10 @@ public class StudentRepository {
         TypedQuery<Student> query = manager.createQuery("SELECT s from Student s where s.email = :email", Student.class);
         List<Student> students = query.setParameter("email", email).getResultList();
         return students.stream().findFirst();
+    }
+
+    public List<Student> all() {
+        TypedQuery<Student> q = manager.createQuery("SELECT s from Student s", Student.class);
+        return q.getResultList();
     }
 }
