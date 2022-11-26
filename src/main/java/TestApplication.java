@@ -31,5 +31,9 @@ public class TestApplication {
         Optional<Student> loaded = studentRepository.findById(john.getId());
 
         System.out.println(loaded);
+
+        System.out.println(studentRepository.findByEmail("john.smith@email.com"));
+
+        System.out.println(studentRepository.findByEmail("john.smith1@email.com"));
     }
 }

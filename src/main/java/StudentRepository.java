@@ -1,6 +1,8 @@
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -15,12 +17,19 @@ public class StudentRepository {
     }
 
 
-    public Student save(Student student){
+    public Student save(Student student) {
         manager.persist(student);
         return student;
     }
 
-    public Optional<Student> findById(long id){
-        return Optional.ofNullable(manager.find(Student.class,id));
+    public Optional<Student> findById(long id) {
+        return Optional.ofNullable(manager.find(Student.class, id));
+    }
+
+
+    public Optional<Student> findByEmail(String email) {
+        TypedQuery<Student> query = manager.createQuery("SELECT s from Student s where s.email = :email", Student.class);
+        List<Student> students = query.setParameter("email", email).getResultList();
+        return students.stream().findFirst();
     }
 }
